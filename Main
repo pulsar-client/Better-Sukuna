@@ -18,8 +18,6 @@ load("https://raw.githubusercontent.com/pulsar-client/Better-Sukuna/refs/heads/m
 
 load("https://raw.githubusercontent.com/pulsar-client/Better-KadeJ/refs/heads/main/External/Buffer")
 
-
-
 load("https://raw.githubusercontent.com/pulsar-client/Better-KadeJ/refs/heads/main/External/Sukuna-fier")
 
-load("")
+load("https://raw.githubusercontent.com/pulsar-client/Better-Sukuna/refs/heads/main/Tableflip")
