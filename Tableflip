@@ -1,17 +1,18 @@
-
-
-
-
 local animationIdMove2 = 11365563255
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local humanoid = character:WaitForChild("Humanoid")
+local playerGui = player:WaitForChild("PlayerGui") -- Reference to the player's GUI
 
 local function onMove2Played(animationTrack)
     if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationIdMove2 then
-        local p = game.Players.LocalPlayer
-        local Humanoid = p.Character:WaitForChild("Humanoid")
+        
+        -- 1. Disable the player's GUI
+        playerGui.Enabled = false
+        
+        local Humanoid = character:WaitForChild("Humanoid")
 
+        -- Stop any playing animations
         for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
             animTrack:Stop()
         end
@@ -26,6 +27,15 @@ local function onMove2Played(animationTrack)
         Anim:AdjustSpeed(0.5)
         Anim.TimePosition = startTime
         Anim:AdjustSpeed(0.5)
+
+        -- 2. Wait for 3.5 seconds
+        -- Since this runs in a separate thread (due to the AnimationPlayed connection), 
+        -- using wait/task.wait here is safe and correct for the delay.
+        task.wait(3.5)
+
+        -- 3. Re-enable the player's GUI
+        playerGui.Enabled = true
+        
     end
 end
 humanoid.AnimationPlayed:Connect(onMove2Played)
