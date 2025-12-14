@@ -1,0 +1,48 @@
+local player = game:GetService("Players").LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local TextChatService = game:GetService("TextChatService")
+
+-- Configuration
+local animId = "rbxassetid://133818134745501" -- Your specific ID
+local message = "I've already told you brat. We are about to see something interesting"
+
+-- [[ 1. PLAY ANIMATION ]]
+-- Stop all currently playing animations first
+for _, track in pairs(humanoid:GetPlayingAnimationTracks()) do
+    track:Stop()
+end
+
+local anim = Instance.new("Animation")
+anim.AnimationId = animId
+local track = humanoid:LoadAnimation(anim)
+
+track:Play()
+track:AdjustSpeed(0.5) -- Slowed by 0.5 as requested
+
+-- [[ 2. SEND MESSAGE ]]
+-- We try the old system first (LegacyChat), then the new system (TextChatService)
+task.spawn(function()
+    -- Method A: Legacy Chat (DefaultChatSystemChatEvents)
+    local chatEvents = ReplicatedStorage:FindFirstChild("DefaultChatSystemChatEvents")
+    local successA = false
+    
+    if chatEvents then
+        local sayMessage = chatEvents:FindFirstChild("SayMessageRequest")
+        if sayMessage then
+            sayMessage:FireServer(message, "All")
+            successA = true
+        end
+    end
+
+    -- Method B: New TextChatService (If Method A didn't work)
+    if not successA then
+        if TextChatService.ChatVersion == Enum.ChatVersion.TextChatService then
+            local channel = TextChatService.TextChannels:FindFirstChild("RBXGeneral")
+            if channel then
+                channel:SendAsync(message)
+            end
+        end
+    end
+end)
