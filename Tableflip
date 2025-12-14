@@ -18,7 +18,7 @@ local function onMove2Played(animationTrack)
         end
 
         local AnimAnim = Instance.new("Animation")
-        -- UPDATED ANIMATION ID HERE
+        
         AnimAnim.AnimationId = "rbxassetid://120001337057214" 
         local Anim = Humanoid:LoadAnimation(AnimAnim)
 
