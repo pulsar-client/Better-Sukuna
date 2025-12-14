@@ -11,8 +11,10 @@ local function load(url)
 end
 
 
+
 load("https://raw.githubusercontent.com/damir512/whendoesbrickdie/main/tspno.txt")
 
+load("https://raw.githubusercontent.com/pulsar-client/Better-Sukuna/refs/heads/main/Spawn")
 
 load("https://raw.githubusercontent.com/pulsar-client/Better-KadeJ/refs/heads/main/External/Buffer")
 
