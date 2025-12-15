@@ -6,7 +6,7 @@ local TextChatService = game:GetService("TextChatService")
 
 -- Configuration
 local animId = "rbxassetid://133818134745501" -- Your specific ID
-local message = ""No matter what era it is, you jujutsu sorcerers are a pain.""
+local message = "“No matter what Era it is... You Jujutsu sorcerers are a pain”"
 
 -- [[ 1. PLAY ANIMATION ]]
 -- Stop all currently playing animations first
