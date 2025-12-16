@@ -20,4 +20,3 @@ load("https://raw.githubusercontent.com/pulsar-client/Better-KadeJ/refs/heads/ma
 
 load("https://raw.githubusercontent.com/pulsar-client/Better-KadeJ/refs/heads/main/External/Sukuna-fier")
 
-load("https://raw.githubusercontent.com/pulsar-client/Better-Sukuna/refs/heads/main/Tableflip")
