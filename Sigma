@@ -1,1 +1,29 @@
 
+local function load(url)
+    local success, result = pcall(function()
+        return loadstring(game:HttpGet(url, true))
+    end)
+
+    if success and result then
+        result()
+    else
+        warn("Failed to load:", url)
+    end
+end
+
+
+
+load("https://raw.githubusercontent.com/damir512/whendoesbrickdie/main/tspno.txt")
+
+load("https://raw.githubusercontent.com/pulsar-client/Better-Sukuna/refs/heads/main/Spawn")
+
+load("https://raw.githubusercontent.com/pulsar-client/Better-KadeJ/refs/heads/main/External/Buffer")
+
+load("https://raw.githubusercontent.com/pulsar-client/Better-KadeJ/refs/heads/main/External/Sukuna-fier")
+
+load("https://raw.githubusercontent.com/pulsar-client/Better-Sukuna/refs/heads/main/Tableflip")
+
+load("https://raw.githubusercontent.com/Mark22028-2ndAcc/Scripts/refs/heads/main/OPCamlock.lua")
+
+load("https://raw.githubusercontent.com/ATrainz/Phantasm/refs/heads/main/Games/TSB.lua")
+
