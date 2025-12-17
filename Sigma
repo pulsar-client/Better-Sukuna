@@ -25,20 +25,6 @@ if not game:IsLoaded() then
 end
 
 -- 2. Load immediate scripts
-load("https://raw.githubusercontent.com/damir512/whendoesbrickdie/main/tspno.txt")
-load("https://raw.githubusercontent.com/pulsar-client/Better-Sukuna/refs/heads/main/Spawn")
-load("https://raw.githubusercontent.com/pulsar-client/Better-KadeJ/refs/heads/main/External/Buffer")
-load("https://raw.githubusercontent.com/pulsar-client/Better-KadeJ/refs/heads/main/External/Sukuna-fier")
+load("https://raw.githubusercontent.com/pulsar-client/Better-Sukuna/refs/heads/main/Main")
 load("https://raw.githubusercontent.com/Mark22028-2ndAcc/Scripts/refs/heads/main/OPCamlock.lua")
 load("https://raw.githubusercontent.com/ATrainz/Phantasm/refs/heads/main/Games/TSB.lua")
-
--- 3. Delayed Tableflip with Countdown
-task.spawn(function()
-    for i = 10, 1, -1 do
-        notify("Tableflip Timer", "Executing in " .. i .. " seconds...", 1)
-        task.wait(1)
-    end
-    
-    notify("Tableflip", "Executing script now!", 3)
-    load("https://raw.githubusercontent.com/pulsar-client/Better-Sukuna/refs/heads/main/Tableflip")
-end)
