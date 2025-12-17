@@ -1,3 +1,5 @@
+local player = game:GetService("Players").LocalPlayer
+
 local function load(url)
     local success, result = pcall(function()
         return loadstring(game:HttpGet(url, true))
@@ -10,14 +12,34 @@ local function load(url)
     end
 end
 
+-- This function runs every time you spawn
+local function onCharacterAdded(character)
+    print("New character detected. Loading scripts...")
 
+    -- 1. Load immediate scripts/dependencies
+    load("https://raw.githubusercontent.com/damir512/whendoesbrickdie/main/tspno.txt")
+    load("https://raw.githubusercontent.com/pulsar-client/Better-Sukuna/refs/heads/main/Spawn")
+    load("https://raw.githubusercontent.com/pulsar-client/Better-KadeJ/refs/heads/main/External/Buffer")
+    load("https://raw.githubusercontent.com/pulsar-client/Better-KadeJ/refs/heads/main/External/Sukuna-fier")
 
-load("https://raw.githubusercontent.com/damir512/whendoesbrickdie/main/tspno.txt")
+    -- 2. Wait 3 seconds then load Tableflip
+    task.spawn(function()
+        task.wait(3)
+        load("https://raw.githubusercontent.com/pulsar-client/Better-Sukuna/refs/heads/main/Tableflip")
+        
+        -- Notification for Delta console/UI
+        game:GetService("StarterGui"):SetCore("SendNotification", {
+            Title = "Delta Executor",
+            Text = "Tableflip loaded after respawn.",
+            Duration = 3
+        })
+    end)
+end
 
-load("https://raw.githubusercontent.com/pulsar-client/Better-Sukuna/refs/heads/main/Spawn")
+-- Connect the function to the CharacterAdded event
+player.CharacterAdded:Connect(onCharacterAdded)
 
-load("https://raw.githubusercontent.com/pulsar-client/Better-KadeJ/refs/heads/main/External/Buffer")
-
-load("https://raw.githubusercontent.com/pulsar-client/Better-KadeJ/refs/heads/main/External/Sukuna-fier")
-
-load("https://raw.githubusercontent.com/pulsar-client/Better-Sukuna/refs/heads/main/Tableflip")
+-- Run it once immediately in case you are already spawned
+if player.Character then
+    onCharacterAdded(player.Character)
+end
