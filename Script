@@ -1,0 +1,3 @@
+
+getgenv().Cosmetics = false; -- FALSE BY DEFAULT
+loadstring(game:HttpGet("https://raw.githubusercontent.com/NotXz3l/Roblox-Scripts/refs/heads/main/TSB/JJK/The%20Strongest%20Of%20History/Main.lua"))();
