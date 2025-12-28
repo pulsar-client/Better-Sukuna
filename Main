@@ -18,9 +18,8 @@ local function onCharacterAdded(character)
 
     -- 1. Load immediate scripts/dependencies
     load("https://raw.githubusercontent.com/pulsar-client/Better-Sukuna/refs/heads/main/Script")
-    load("https://raw.githubusercontent.com/pulsar-client/Better-Sukuna/refs/heads/main/Spawn")
     load("https://raw.githubusercontent.com/pulsar-client/Better-KadeJ/refs/heads/main/External/Buffer")
-    load("https://raw.githubusercontent.com/pulsar-client/Better-KadeJ/refs/heads/main/External/Sukuna-fier")
+    
 
     -- 2. Wait 3 seconds then load Tableflip
     task.spawn(function()
