@@ -1,11 +1,35 @@
-getgenv().Cosmetics = false
-
-local success, result = pcall(function()
-    return game:HttpGet("https://raw.githubusercontent.com/NotXz3l/Roblox-Scripts/main/TSB/JJK/The%20Strongest%20Of%20History/Main.lua")
-end)
-
-if success then
-    loadstring(result)()
-else
-    warn("Failed to load script: " .. tostring(result))
+-- GOLDENHEAD PUBLIC SERVER FIX
+local function applyPatch()
+    local workspace = game:GetService("Workspace")
+    local map = workspace:FindFirstChild("Map")
+    
+    if map then
+        local grassTop = map:FindFirstChild("GrassTop")
+        if grassTop then
+            -- Check if the Union is missing
+            if not grassTop:FindFirstChild("Union") then
+                -- Create a fake 'Union' so the script doesn't crash
+                local fakeUnion = Instance.new("Part")
+                fakeUnion.Name = "Union"
+                fakeUnion.Transparency = 1
+                fakeUnion.Anchored = true
+                fakeUnion.CanCollide = false
+                fakeUnion.Size = Vector3.new(1, 1, 1)
+                fakeUnion.Position = Vector3.new(0, -100, 0) -- Hide it under the map
+                fakeUnion.Parent = grassTop
+                print("Patch Applied: Fake Union created for Public Server.")
+            end
+        else
+            warn("Patch Failed: 'GrassTop' folder not found. Map might be different.")
+        end
+    else
+        warn("Patch Failed: 'Map' folder not found.")
+    end
 end
+
+-- Run the patch first
+applyPatch()
+
+-- Wait a second for the patch to register, then load the original script
+task.wait(1)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Reapvitalized/TSB/refs/heads/main/GOLDENHEAD.lua"))()
