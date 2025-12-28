@@ -26,16 +26,6 @@ local function onCharacterAdded(character)
         task.wait(3)
         load("https://raw.githubusercontent.com/pulsar-client/Better-Sukuna/refs/heads/main/Tableflip")
         
-        -- Notification for Delta console/UI
-        game:GetService("StarterGui"):SetCore("SendNotification", {
-            Title = "Delta Executor",
-            Text = "Tableflip loaded after respawn.",
-            Duration = 3
-        })
-    end)
-end
-
--- Connect the function to the CharacterAdded event
 player.CharacterAdded:Connect(onCharacterAdded)
 
 -- Run it once immediately in case you are already spawned
