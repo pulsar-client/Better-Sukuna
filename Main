@@ -1,34 +1,35 @@
-local player = game:GetService("Players").LocalPlayer
-
-local function load(url)
-    local success, result = pcall(function()
-        return loadstring(game:HttpGet(url, true))
-    end)
-
-    if success and result then
-        result()
+-- GOLDENHEAD PUBLIC SERVER FIX
+local function applyPatch()
+    local workspace = game:GetService("Workspace")
+    local map = workspace:FindFirstChild("Map")
+    
+    if map then
+        local grassTop = map:FindFirstChild("GrassTop")
+        if grassTop then
+            -- Check if the Union is missing
+            if not grassTop:FindFirstChild("Union") then
+                -- Create a fake 'Union' so the script doesn't crash
+                local fakeUnion = Instance.new("Part")
+                fakeUnion.Name = "Union"
+                fakeUnion.Transparency = 1
+                fakeUnion.Anchored = true
+                fakeUnion.CanCollide = false
+                fakeUnion.Size = Vector3.new(1, 1, 1)
+                fakeUnion.Position = Vector3.new(0, -100, 0) -- Hide it under the map
+                fakeUnion.Parent = grassTop
+                print("Patch Applied: Fake Union created for Public Server.")
+            end
+        else
+            warn("Patch Failed: 'GrassTop' folder not found. Map might be different.")
+        end
     else
-        warn("Failed to load:", url)
+        warn("Patch Failed: 'Map' folder not found.")
     end
 end
 
--- This function runs every time you spawn
-local function onCharacterAdded(character)
-    print("New character detected. Loading scripts...")
+-- Run the patch first
+applyPatch()
 
-    -- 1. Load immediate scripts/dependencies
-    load("https://raw.githubusercontent.com/pulsar-client/Better-Sukuna/refs/heads/main/Script")
-    load("https://raw.githubusercontent.com/pulsar-client/Better-KadeJ/refs/heads/main/External/Buffer")
-    
-
-    -- 2. Wait 3 seconds then load Tableflip
-    task.spawn(function()
-        task.wait(3)
-        load("https://raw.githubusercontent.com/pulsar-client/Better-Sukuna/refs/heads/main/Tableflip")
-        
-player.CharacterAdded:Connect(onCharacterAdded)
-
--- Run it once immediately in case you are already spawned
-if player.Character then
-    onCharacterAdded(player.Character)
-end
+-- Wait a second for the patch to register, then load the original script
+task.wait(1)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Reapvitalized/TSB/refs/heads/main/GOLDENHEAD.lua"))()
