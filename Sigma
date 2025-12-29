@@ -25,6 +25,6 @@ if not game:IsLoaded() then
 end
 
 -- 2. Load immediate scripts
-load("https://raw.githubusercontent.com/pulsar-client/Better-Sukuna/refs/heads/main/Main")
+load("https://raw.githubusercontent.com/ivannetta/ShitScripts/main/forsaken.lua")
 load("https://raw.githubusercontent.com/Mark22028-2ndAcc/Scripts/refs/heads/main/OPCamlock.lua")
-load("https://raw.githubusercontent.com/ATrainz/Phantasm/refs/heads/main/Games/TSB.lua")
+load("https://raw.githubusercontent.com/Gughejd/Refesus/refs/heads/main/NYANSKEN.lua.txt")
