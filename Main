@@ -1,35 +1,34 @@
--- GOLDENHEAD PUBLIC SERVER FIX
-local function applyPatch()
-    local workspace = game:GetService("Workspace")
+-- [[ GOLDENHEAD: PUBLIC SERVER STABILITY FIX v3 ]]
+
+local function applyMapFix()
     local map = workspace:FindFirstChild("Map")
+    if not map then return end
     
-    if map then
-        local grassTop = map:FindFirstChild("GrassTop")
-        if grassTop then
-            -- Check if the Union is missing
-            if not grassTop:FindFirstChild("Union") then
-                -- Create a fake 'Union' so the script doesn't crash
-                local fakeUnion = Instance.new("Part")
-                fakeUnion.Name = "Union"
-                fakeUnion.Transparency = 1
-                fakeUnion.Anchored = true
-                fakeUnion.CanCollide = false
-                fakeUnion.Size = Vector3.new(1, 1, 1)
-                fakeUnion.Position = Vector3.new(0, -100, 0) -- Hide it under the map
-                fakeUnion.Parent = grassTop
-                print("Patch Applied: Fake Union created for Public Server.")
+    -- Added "Stuff" based on your latest error
+    local targetFolders = {"GrassTop", "GrassBottom", "Stuff"}
+    
+    for _, name in pairs(targetFolders) do
+        local folder = map:FindFirstChild(name)
+        if folder then
+            -- Create a "Union" part if missing
+            if not folder:FindFirstChild("Union") then
+                local u = Instance.new("Part", folder)
+                u.Name = "Union"; u.Transparency = 1; u.Anchored = true; u.CanCollide = false
+                u.Position = Vector3.new(0, -500, 0)
             end
-        else
-            warn("Patch Failed: 'GrassTop' folder not found. Map might be different.")
+            -- Create a generic "Part" if missing (for the "Stuff" folder error)
+            if not folder:FindFirstChild("Part") then
+                local p = Instance.new("Part", folder)
+                p.Name = "Part"; p.Transparency = 1; p.Anchored = true; p.CanCollide = false
+                p.Position = Vector3.new(0, -500, 0)
+            end
         end
-    else
-        warn("Patch Failed: 'Map' folder not found.")
     end
+    print("Map Fix Applied: Top, Bottom, and Stuff patched.")
 end
 
--- Run the patch first
-applyPatch()
+-- Run the fix
+applyMapFix()
 
--- Wait a second for the patch to register, then load the original script
-task.wait(1)
+-- Load the original script
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Reapvitalized/TSB/refs/heads/main/GOLDENHEAD.lua"))()
