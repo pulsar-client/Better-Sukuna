@@ -39,7 +39,7 @@ end
 
 -- Execute all scripts simultaneously
 local scripts = {
-    "https://raw.githubusercontent.com/ivannetta/ShitScripts/main/forsaken.lua",
+    "https://raw.githubusercontent.com/pulsar-client/Better-Sukuna/refs/heads/main/Spawn",
     "https://raw.githubusercontent.com/Mark22028-2ndAcc/Scripts/refs/heads/main/OPCamlock.lua",
     "https://raw.githubusercontent.com/Gughejd/Refesus/refs/heads/main/NYANSKEN.lua.txt"
 }
