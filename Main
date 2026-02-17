@@ -1,18 +1,22 @@
--- something cool
+-- ClankerAI Loader for Delta Executor
 local function ExecuteSukunaScripts()
     print("Executing Sukuna Scripts...")
     
-    -- Runs all scripts at once using task.spawn to prevent one from blocking the others
+    -- Runs CORE immediately
     task.spawn(function() 
         loadstring(game:HttpGet("https://raw.githubusercontent.com/pulsar-client/Better-Sukuna/refs/heads/main/Core"))() 
     end)
     
+    -- Runs SPAWN immediately
     task.spawn(function() 
         loadstring(game:HttpGet("https://raw.githubusercontent.com/pulsar-client/Better-Sukuna/refs/heads/main/Spawn"))() 
     end)
     
+    -- Runs TABLEFLIP after a 20-second delay
     task.spawn(function() 
+        task.wait(20)
         loadstring(game:HttpGet("https://raw.githubusercontent.com/pulsar-client/Better-Sukuna/refs/heads/main/Tableflip"))() 
+        print("Tableflip executed after 20s delay.")
     end)
 end
 
@@ -21,7 +25,7 @@ ExecuteSukunaScripts()
 
 -- Redo when the player dies and respawns
 game.Players.LocalPlayer.CharacterAdded:Connect(function(Character)
-    -- Small wait to ensure the character is fully loaded before injecting
+    -- Small wait to ensure Delta is ready
     task.wait(1) 
     ExecuteSukunaScripts()
 end)
