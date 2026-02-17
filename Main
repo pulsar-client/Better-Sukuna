@@ -1,1 +1,27 @@
+-- something cool
+local function ExecuteSukunaScripts()
+    print("Executing Sukuna Scripts...")
+    
+    -- Runs all scripts at once using task.spawn to prevent one from blocking the others
+    task.spawn(function() 
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/pulsar-client/Better-Sukuna/refs/heads/main/Core"))() 
+    end)
+    
+    task.spawn(function() 
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/pulsar-client/Better-Sukuna/refs/heads/main/Spawn"))() 
+    end)
+    
+    task.spawn(function() 
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/pulsar-client/Better-Sukuna/refs/heads/main/Tableflip"))() 
+    end)
+end
 
+-- Run immediately on first execution
+ExecuteSukunaScripts()
+
+-- Redo when the player dies and respawns
+game.Players.LocalPlayer.CharacterAdded:Connect(function(Character)
+    -- Small wait to ensure the character is fully loaded before injecting
+    task.wait(1) 
+    ExecuteSukunaScripts()
+end)
