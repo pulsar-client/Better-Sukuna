@@ -6,7 +6,7 @@ local TextChatService = game:GetService("TextChatService")
 
 -- Configuration
 local animId = "rbxassetid://133818134745501" -- Your specific ID
-local message = "...."
+local message = ""
 
 -- [[ 1. PLAY ANIMATION ]]
 -- Stop all currently playing animations first
